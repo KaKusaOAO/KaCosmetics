@@ -4,9 +4,10 @@
   "package": "com.kakaouo.mods.kacosmetics.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "client.SkullModelMixin"
   ],
   "client": [
+    "client.BlockEntityWithoutLevelRendererMixin",
+    "client.CustomHeadLayerMixin",
     "client.EntityRendererMixin",
     "client.HttpTextureMixin",
     "client.HumanoidModelMixin",
@@ -18,6 +19,7 @@
     "client.SkullBlockRendererAccessor",
     "client.SkullBlockRendererMixin",
     "client.SkullModelAccessor",
+    "client.SkullModelMixin",
     "client.TitleScreenMixin"
   ],
   "injectors": {

@@ -1,6 +1,7 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
+import com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper;
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModel;
@@ -23,24 +24,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
 
+import static com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper.*;
+
 @Mixin(SkullBlockRenderer.class)
 public class SkullBlockRendererMixin {
     @Shadow @Final private Map<SkullBlock.Type, SkullModelBase> modelByType;
 
-    private static SkullBlockRenderer lastCalledInstance;
-
     @Inject(method = "render(Lnet/minecraft/world/level/block/entity/SkullBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/blockentity/SkullBlockRenderer;getRenderType(Lnet/minecraft/world/level/block/SkullBlock$Type;Lcom/mojang/authlib/GameProfile;)Lnet/minecraft/client/renderer/RenderType;"))
     public void injectRenderPreRenderType(SkullBlockEntity skullBlockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, CallbackInfo ci) {
-        lastCalledInstance = (SkullBlockRenderer) (Object) this;
+        lastQueriedModel = modelByType.get(SkullBlock.Types.PLAYER);
     }
 
     @ModifyArg(method = "getRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
     private static ResourceLocation injectRenderType(ResourceLocation resourceLocation) {
-        if (lastCalledInstance != null && SkinModifier.isValidGrassSkin(resourceLocation)) {
-            SkullModelBase modelBase = ((SkullBlockRendererAccessor) lastCalledInstance).getModelByType().get(SkullBlock.Types.PLAYER);
+        if (lastQueriedModel != null && SkinModifier.isValidGrassSkin(resourceLocation)) {
+            SkullModelBase modelBase = lastQueriedModel;
             if (modelBase instanceof SkullModel model) {
-                ModelPart root = ((SkullModelAccessor) model).getRoot();
-                root.getChild("grass").visible = true;
+                try {
+                    ModelPart root = ((SkullModelAccessor) model).getRoot();
+                    root.getChild("grass").visible = true;
+                } catch (Exception ex) {
+                    // ;
+                }
             }
         }
         return resourceLocation;
@@ -48,12 +53,16 @@ public class SkullBlockRendererMixin {
 
     @Inject(method = "renderSkull", at = @At("RETURN"))
     private static void injectPostRenderSkull(Direction direction, float f, float g, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, SkullModelBase skullModelBase, RenderType renderType, CallbackInfo ci) {
-        if (lastCalledInstance == null) return;
+        if (lastQueriedModel == null) return;
 
-        SkullModelBase modelBase = ((SkullBlockRendererAccessor) lastCalledInstance).getModelByType().get(SkullBlock.Types.PLAYER);
+        SkullModelBase modelBase = lastQueriedModel;
         if (modelBase instanceof SkullModel model) {
-            ModelPart root = ((SkullModelAccessor) model).getRoot();
-            root.getChild("grass").visible = false;
+            try {
+                ModelPart root = ((SkullModelAccessor) model).getRoot();
+                root.getChild("grass").visible = false;
+            } catch (Exception ex) {
+                // ;
+            }
         }
     }
 }
