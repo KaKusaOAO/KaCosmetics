@@ -1,7 +1,6 @@
 package com.kakaouo.mods.kacosmetics.util;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import net.minecraft.util.FastColor;
 
 import java.awt.*;
 

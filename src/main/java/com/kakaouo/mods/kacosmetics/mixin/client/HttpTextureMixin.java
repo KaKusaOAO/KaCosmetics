@@ -1,10 +1,8 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
-import com.kakaouo.mods.kacosmetics.KaCosmetics;
 import com.kakaouo.mods.kacosmetics.accessors.ModdedHttpTexture;
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
 import com.mojang.blaze3d.platform.NativeImage;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.texture.HttpTexture;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

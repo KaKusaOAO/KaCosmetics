@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
 
-import static com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper.*;
+import static com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper.lastQueriedModel;
 
 @Mixin(SkullBlockRenderer.class)
 public class SkullBlockRendererMixin {
