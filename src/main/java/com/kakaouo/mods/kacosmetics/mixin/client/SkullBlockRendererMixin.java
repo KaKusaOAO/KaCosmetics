@@ -1,8 +1,6 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
-import com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper;
-import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.SkullModelBase;
@@ -37,7 +35,7 @@ public class SkullBlockRendererMixin {
 
     @ModifyArg(method = "getRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
     private static ResourceLocation injectRenderType(ResourceLocation resourceLocation) {
-        if (lastQueriedModel != null && SkinModifier.isValidGrassSkin(resourceLocation)) {
+        if (lastQueriedModel != null && SkinModifier.isGrassSkin(resourceLocation)) {
             SkullModelBase modelBase = lastQueriedModel;
             if (modelBase instanceof SkullModel model) {
                 try {

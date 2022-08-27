@@ -27,7 +27,7 @@ public class PlayerGrassHeadLayer extends RenderLayer<AbstractClientPlayer, Play
         if (profile == null || !profile.isComplete()) return;
 
         ResourceLocation location = player.getSkinTextureLocation();
-        if (!SkinModifier.isValidGrassSkin(location)) return;
+        if (!SkinModifier.isGrassSkin(location)) return;
 
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityTranslucent(location));
         int m = LivingEntityRenderer.getOverlayCoords(player, 0.0F);

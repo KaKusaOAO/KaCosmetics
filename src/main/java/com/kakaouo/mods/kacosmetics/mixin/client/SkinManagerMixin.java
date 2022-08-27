@@ -4,7 +4,6 @@ import com.kakaouo.mods.kacosmetics.accessors.ModdedHttpTexture;
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
 import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.renderer.texture.HttpTexture;
-import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.resources.SkinManager;
 import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,8 +19,8 @@ public class SkinManagerMixin {
         if (!(abstractTexture instanceof HttpTexture texture)) return;
 
         ResourceLocation location = args.get(0);
-        ((ModdedHttpTexture) texture).callIfPlayerHasGrass(() -> {
-            SkinModifier.addValidGrassSkinLocation(location);
+        ((ModdedHttpTexture) texture).executeAfterLoadIfHasGrass(() -> {
+            SkinModifier.registerGrassPlayerSkin(location);
         });
     }
 }

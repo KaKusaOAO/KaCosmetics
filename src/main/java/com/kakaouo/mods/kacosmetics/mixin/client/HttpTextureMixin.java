@@ -27,7 +27,7 @@ public class HttpTextureMixin implements ModdedHttpTexture {
     }
 
     @Override
-    public void callIfPlayerHasGrass(Runnable callback) {
+    public void executeAfterLoadIfHasGrass(Runnable callback) {
         this.grassPlayerCallback = callback;
     }
 }
