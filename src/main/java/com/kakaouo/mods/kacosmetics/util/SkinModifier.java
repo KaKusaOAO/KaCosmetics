@@ -26,9 +26,35 @@ public enum SkinModifier {
         if (!KakaUtils.colorAtPixel(bitmap, 61, 0).equals(new Color(0xff859b))) return false;
 
         // 視需求套用專屬頭頂
-        if (KakaUtils.colorAtPixel(bitmap, 60, 0).equals(new Color(0xfffffe))) {
+        boolean useAltHeadTop = false;
+        boolean useAltHatTop = false;
+        boolean valid = true;
+
+        Color keyColor = KakaUtils.colorAtPixel(bitmap, 60, 0);
+        if (keyColor.getRed() == 0xff && keyColor.getAlpha() == 0xff) {
+            int g = keyColor.getGreen();
+            int b = keyColor.getBlue();
+
+            if (g == 0xfe) {
+                useAltHeadTop = true;
+            } else {
+                valid = g == 0xff;
+            }
+
+            if (b == 0xfe) {
+                useAltHatTop = true;
+            } else {
+                valid = valid && g == 0xff;
+            }
+        }
+
+        if (valid && useAltHatTop) {
             // sourceX, sourceY, offsetX, offsetY, width, height, flipX, flipY
             bitmap.copyRect(32, 0, 8, 0, 8, 8, false, false);
+        }
+
+        if (valid && useAltHeadTop) {
+            bitmap.copyRect(0, 0, 8, 0, 8, 8, false, false);
         }
         return true;
     }
