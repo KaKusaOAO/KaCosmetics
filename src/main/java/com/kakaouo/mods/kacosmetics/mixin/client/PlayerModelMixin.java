@@ -24,11 +24,18 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
     private static void injectModel(CubeDeformation cubeDeformation, boolean bl, CallbackInfoReturnable<MeshDefinition> cir) {
         MeshDefinition mesh = cir.getReturnValue();
         PartDefinition root = mesh.getRoot();
+
+        // Grass
         PartDefinition grass = root.addOrReplaceChild("grass", CubeListBuilder.create(), PartPose.ZERO);
         ModelModifier.addGrassToPartDefinition(grass);
+
+        // Eevee Ears
+        PartDefinition eeveeEars = root.addOrReplaceChild("eeveeEars", CubeListBuilder.create(), PartPose.ZERO);
+        ModelModifier.addEeveeEarsToPartDefinition(eeveeEars);
     }
 
     private ModelPart grass;
+    private ModelPart eeveeEars;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void injectInit(ModelPart modelPart, boolean bl, CallbackInfo ci) {
@@ -37,11 +44,18 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
         PlayerModel<?> self = (PlayerModel<?>) (Object) this;
         if (!self.getClass().equals(PlayerModel.class)) return;
         this.grass = modelPart.getChild("grass");
+        this.eeveeEars = modelPart.getChild("eeveeEars");
     }
 
     @Override
     public void renderGrass(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
         this.grass.copyFrom(this.head);
         this.grass.render(poseStack, vertexConsumer, i, j);
+    }
+
+    @Override
+    public void renderEeveeEars(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
+        this.eeveeEars.copyFrom(this.head);
+        this.eeveeEars.render(poseStack, vertexConsumer, i, j);
     }
 }

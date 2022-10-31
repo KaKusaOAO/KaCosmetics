@@ -5,4 +5,5 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 
 public interface ModdedPlayerModel {
     void renderGrass(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j);
+    void renderEeveeEars(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j);
 }

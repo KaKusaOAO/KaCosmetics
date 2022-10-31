@@ -1,5 +1,6 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
+import com.kakaouo.mods.kacosmetics.util.Modifiers;
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModel;
@@ -35,12 +36,19 @@ public class SkullBlockRendererMixin {
 
     @ModifyArg(method = "getRenderType", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/RenderType;entityTranslucent(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/client/renderer/RenderType;"))
     private static ResourceLocation injectRenderType(ResourceLocation resourceLocation) {
-        if (lastQueriedModel != null && SkinModifier.isGrassSkin(resourceLocation)) {
+        if (lastQueriedModel != null) {
             SkullModelBase modelBase = lastQueriedModel;
             if (modelBase instanceof SkullModel model) {
                 try {
                     ModelPart root = ((SkullModelAccessor) model).getRoot();
-                    root.getChild("grass").visible = true;
+
+                    if (SkinModifier.isOfModifier(Modifiers.GRASS, resourceLocation)) {
+                        root.getChild("grass").visible = true;
+                    }
+
+                    if (SkinModifier.isOfModifier(Modifiers.EEVEE, resourceLocation)) {
+                        root.getChild("eeveeEars").visible = true;
+                    }
                 } catch (Exception ex) {
                     // ;
                 }
@@ -58,6 +66,7 @@ public class SkullBlockRendererMixin {
             try {
                 ModelPart root = ((SkullModelAccessor) model).getRoot();
                 root.getChild("grass").visible = false;
+                root.getChild("eeveeEars").visible = false;
             } catch (Exception ex) {
                 // ;
             }

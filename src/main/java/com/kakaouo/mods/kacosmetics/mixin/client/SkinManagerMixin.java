@@ -19,8 +19,8 @@ public class SkinManagerMixin {
         if (!(abstractTexture instanceof HttpTexture texture)) return;
 
         ResourceLocation location = args.get(0);
-        ((ModdedHttpTexture) texture).executeAfterLoadIfHasGrass(() -> {
-            SkinModifier.registerGrassPlayerSkin(location);
+        ((ModdedHttpTexture) texture).executeAfterLoadIfModified((modifiers) -> {
+            SkinModifier.registerPlayerSkin(modifiers, location);
         });
     }
 }
