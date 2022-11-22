@@ -10,6 +10,7 @@
 * `1.18.2`（基底版本）
 * `1.19`
 * `1.19.2`
+* `22w46a`
 
 這個模組需要您安裝 [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) 才能運作！\
 將這個模組和 Fabric API 放到 `mods` 資料夾就可以了！
