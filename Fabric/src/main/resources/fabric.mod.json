@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.kakaouo.mods.kacosmetics.client.KaCosmeticsClient"
+      "com.kakaouo.mods.kacosmetics.fabric.ModFabricClient"
     ],
     "main": [
-      "com.kakaouo.mods.kacosmetics.KaCosmetics"
+      "com.kakaouo.mods.kacosmetics.fabric.ModFabric"
     ]
   },
   "mixins": [
