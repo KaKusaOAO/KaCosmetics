@@ -1,0 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "Copyright 2023 (c) Kaka. All rights reserved."
+
+[[mods]]
+modId = "kacosmetics"
+version = "${version}"
+displayName = "KaCosmetics"
+authors = "Kaka"
+description = '''
+KaCosmetics ${version} by Kaka.
+'''
+logoFile = "assets/kacosmetics/icon.png"
+
+[[dependencies.kacosmetics]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kacosmetics]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kacosmetics]]
+modId = "architectury"
+mandatory = false
+versionRange = "[4.9.83,)"
+ordering = "AFTER"
+side = "BOTH"
