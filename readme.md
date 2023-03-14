@@ -7,16 +7,29 @@
 
 請使用 1.18.2 以上的版本。更舊的版本將不能使用這個模組。\
 目前測試過支援的版本如下：
-* `1.18.2`（基底版本）
-* `1.19`
-* `1.19.2`
-* `1.19.3`
 
-這個模組需要您安裝 [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) 才能運作！\
-將這個模組和 Fabric API 放到 `mods` 資料夾就可以了！
+| 版本             | Fabric | Quilt | Forge |
+|----------------|--------|-------|-------|
+| `1.18.2`（基底版本） | ✅      | ❓     | ❓     |
+| `1.19`         | ✅      | ❓     | ❓     |
+| `1.19.2`       | ✅      | ❓     | ❓     |
+| `1.19.3`       | ✅      | ❓     | ❓     |
 
 > 目前已知本模組會和 OptiFine 衝突！\
 > 如果您有在使用 OptiFine 的話，安裝這個模組會導致模組載入失敗，Minecraft 會崩潰！
+
+### Fabric
+這個模組需要您安裝 [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) 才能運作！\
+將這個模組和 Fabric API 放到 `mods` 資料夾就可以了！
+
+### Quilt
+這個模組需要您安裝 [Quilted Fabric API](https://www.curseforge.com/minecraft/mc-mods/qsl) 才能運作！\
+將這個模組和 Quilted Fabric API 放到 `mods` 資料夾就可以了！
+
+### Forge
+將這個模組放到 `mods` 資料夾就可以了！
+
+---
 
 ## 關於 Skin 規範
 為了不影響其他沒有特別為這個模組設計的 skin，所以設計了 skin 規範。\
