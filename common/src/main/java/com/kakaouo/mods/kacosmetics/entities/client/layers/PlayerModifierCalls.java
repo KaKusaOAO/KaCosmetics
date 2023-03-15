@@ -16,4 +16,12 @@ public enum PlayerModifierCalls {
     public static void renderGrass(PlayerModel<AbstractClientPlayer> model, PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
         ((ModdedPlayerModel) model).renderGrass(poseStack, vertexConsumer, i, j);
     }
+
+    public static void renderCatEars(PlayerModel<AbstractClientPlayer> model, PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
+        ((ModdedPlayerModel) model).renderCatEars(poseStack, vertexConsumer, i, j);
+    }
+
+    public static void renderCatTail(PlayerModel<AbstractClientPlayer> model, PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
+        ((ModdedPlayerModel) model).renderCatTail(poseStack, vertexConsumer, i, j);
+    }
 }

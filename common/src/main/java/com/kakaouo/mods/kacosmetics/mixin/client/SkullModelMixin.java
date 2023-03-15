@@ -25,6 +25,7 @@ public class SkullModelMixin {
 
     private ModelPart grass;
     private ModelPart eeveeEars;
+    private ModelPart catEars;
 
     @ModifyArg(method = "createHumanoidHeadLayer", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/geom/builders/LayerDefinition;create(Lnet/minecraft/client/model/geom/builders/MeshDefinition;II)Lnet/minecraft/client/model/geom/builders/LayerDefinition;"))
     private static MeshDefinition injectHumanoidModel(MeshDefinition mesh) {
@@ -38,6 +39,10 @@ public class SkullModelMixin {
         PartDefinition eeveeEars = root.addOrReplaceChild("eeveeEars", CubeListBuilder.create(), PartPose.ZERO);
         ModelModifier.addEeveeEarsToPartDefinition(eeveeEars);
 
+        // Cat Ears
+        PartDefinition catEars = root.addOrReplaceChild("catEars", CubeListBuilder.create(), PartPose.ZERO);
+        ModelModifier.addCatEarsToPartDefinition(catEars);
+
         return mesh;
     }
 
@@ -46,6 +51,7 @@ public class SkullModelMixin {
         try {
             this.grass = root.getChild("grass");
             this.eeveeEars = root.getChild("eeveeEars");
+            this.catEars = modelPart.getChild("catEars");
         } catch (NoSuchElementException ex) {
             // ;
         }
@@ -59,6 +65,10 @@ public class SkullModelMixin {
 
         if (eeveeEars != null) {
             eeveeEars.copyFrom(head);
+        }
+
+        if (catEars != null) {
+            catEars.copyFrom(head);
         }
     }
 }

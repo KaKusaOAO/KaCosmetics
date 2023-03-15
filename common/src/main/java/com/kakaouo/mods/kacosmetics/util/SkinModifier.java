@@ -37,10 +37,24 @@ public enum SkinModifier {
         return modifiers.modify(bitmap);
     }
 
-    public static boolean applyGrassModification(NativeImage bitmap) {
+    public static boolean validateKakaPalette(NativeImage bitmap) {
         if (!KakaUtils.colorAtPixel(bitmap, 63, 0).equals(new Color(0x3acb28))) return false;
         if (!KakaUtils.colorAtPixel(bitmap, 62, 0).equals(new Color(0xf9ca8b))) return false;
-        if (!KakaUtils.colorAtPixel(bitmap, 61, 0).equals(new Color(0xff859b))) return false;
+        return KakaUtils.colorAtPixel(bitmap, 61, 0).equals(new Color(0xff859b));
+    }
+
+    public static boolean applyCatEarsModification(NativeImage bitmap) {
+        if (!SkinModifier.validateKakaPalette(bitmap)) return false;
+        return KakaUtils.colorAtPixel(bitmap, 62, 1).equals(new Color(0xdb9c3e));
+    }
+
+    public static boolean applyCatTailModification(NativeImage bitmap) {
+        if (!SkinModifier.validateKakaPalette(bitmap)) return false;
+        return KakaUtils.colorAtPixel(bitmap, 63, 1).equals(new Color(0x987b54));
+    }
+
+    public static boolean applyGrassModification(NativeImage bitmap) {
+        if (!SkinModifier.validateKakaPalette(bitmap)) return false;
 
         // 視需求套用專屬頭頂
         boolean useAltHeadTop = false;
@@ -77,10 +91,9 @@ public enum SkinModifier {
     }
 
     public static boolean applyEeveeModification(NativeImage bitmap) {
+        // Meant not to be compatible with the grass modification
         if (!KakaUtils.colorAtPixel(bitmap, 63, 0).equals(new Color(0x51280c))) return false;
         if (!KakaUtils.colorAtPixel(bitmap, 62, 0).equals(new Color(0xc5a068))) return false;
-        if (!KakaUtils.colorAtPixel(bitmap, 61, 0).equals(new Color(0xd8c5a1))) return false;
-
-        return true;
+        return KakaUtils.colorAtPixel(bitmap, 61, 0).equals(new Color(0xd8c5a1));
     }
 }

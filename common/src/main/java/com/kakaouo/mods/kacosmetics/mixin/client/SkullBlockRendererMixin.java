@@ -49,6 +49,10 @@ public class SkullBlockRendererMixin {
                     if (SkinModifier.isOfModifier(Modifiers.EEVEE, resourceLocation)) {
                         root.getChild("eeveeEars").visible = true;
                     }
+
+                    if (SkinModifier.isOfModifier(Modifiers.CAT_EARS, resourceLocation)) {
+                        root.getChild("catEars").visible = true;
+                    }
                 } catch (Exception ex) {
                     // ;
                 }
@@ -67,6 +71,7 @@ public class SkullBlockRendererMixin {
                 ModelPart root = ((SkullModelAccessor) model).getRoot();
                 root.getChild("grass").visible = false;
                 root.getChild("eeveeEars").visible = false;
+                root.getChild("catEars").visible = false;
             } catch (Exception ex) {
                 // ;
             }

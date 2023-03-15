@@ -9,5 +9,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(HumanoidModel.class)
 public abstract class HumanoidModelMixin<T extends LivingEntity> {
+    @Shadow @Final public ModelPart body;
     @Shadow @Final public ModelPart head;
 }

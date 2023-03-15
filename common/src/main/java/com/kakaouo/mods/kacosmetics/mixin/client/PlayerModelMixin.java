@@ -32,10 +32,20 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
         // Eevee Ears
         PartDefinition eeveeEars = root.addOrReplaceChild("eeveeEars", CubeListBuilder.create(), PartPose.ZERO);
         ModelModifier.addEeveeEarsToPartDefinition(eeveeEars);
+
+        // Cat Ears
+        PartDefinition catEars = root.addOrReplaceChild("catEars", CubeListBuilder.create(), PartPose.ZERO);
+        ModelModifier.addCatEarsToPartDefinition(catEars);
+
+        // Cat Tail
+        PartDefinition catTail = root.addOrReplaceChild("catTail", CubeListBuilder.create(), PartPose.ZERO);
+        ModelModifier.addCatTailToPartDefinition(catTail);
     }
 
     private ModelPart grass;
     private ModelPart eeveeEars;
+    private ModelPart catEars;
+    private ModelPart catTail;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void injectInit(ModelPart modelPart, boolean bl, CallbackInfo ci) {
@@ -43,8 +53,11 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
         // 有人可以告訴我他們到底在想什麼嗎?
         PlayerModel<?> self = (PlayerModel<?>) (Object) this;
         if (!self.getClass().equals(PlayerModel.class)) return;
+
         this.grass = modelPart.getChild("grass");
         this.eeveeEars = modelPart.getChild("eeveeEars");
+        this.catEars = modelPart.getChild("catEars");
+        this.catTail = modelPart.getChild("catTail");
     }
 
     @Override
@@ -57,5 +70,17 @@ public abstract class PlayerModelMixin<T extends LivingEntity> extends HumanoidM
     public void renderEeveeEars(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
         this.eeveeEars.copyFrom(this.head);
         this.eeveeEars.render(poseStack, vertexConsumer, i, j);
+    }
+
+    @Override
+    public void renderCatEars(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
+        this.catEars.copyFrom(this.head);
+        this.catEars.render(poseStack, vertexConsumer, i, j);
+    }
+
+    @Override
+    public void renderCatTail(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int j) {
+        this.catTail.copyFrom(this.body);
+        this.catTail.render(poseStack, vertexConsumer, i, j);
     }
 }

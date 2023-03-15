@@ -10,3 +10,4 @@ public class PlayerGrassHeadLayer extends AbstractPlayerModifierLayer {
         super(renderLayerParent, Modifiers.GRASS, PlayerModifierCalls::renderGrass);
     }
 }
+

@@ -1,5 +1,7 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
+import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerCatEarsHeadLayer;
+import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerCatTailBodyLayer;
 import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerEeveeEarsHeadLayer;
 import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerGrassHeadLayer;
 import net.minecraft.client.model.PlayerModel;
@@ -18,5 +20,7 @@ public abstract class PlayerRendererMixin extends LivingEntityRendererMixin<Abst
         PlayerRenderer renderer = (PlayerRenderer) (Object) this;
         this.addLayer(new PlayerGrassHeadLayer(renderer));
         this.addLayer(new PlayerEeveeEarsHeadLayer(renderer));
+        this.addLayer(new PlayerCatEarsHeadLayer(renderer));
+        this.addLayer(new PlayerCatTailBodyLayer(renderer));
     }
 }

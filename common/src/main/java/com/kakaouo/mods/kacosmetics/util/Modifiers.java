@@ -4,6 +4,8 @@ import com.mojang.blaze3d.platform.NativeImage;
 
 public enum Modifiers {
     GRASS(SkinModifier::applyGrassModification),
+    CAT_EARS(SkinModifier::applyCatEarsModification),
+    CAT_TAIL(SkinModifier::applyCatTailModification),
     EEVEE(SkinModifier::applyEeveeModification);
 
     private final ModifyOperator modifier;
