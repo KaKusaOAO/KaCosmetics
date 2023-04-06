@@ -23,7 +23,7 @@ public class HttpTextureMixin implements ModdedHttpTexture {
         NativeImage bitmap = cir.getReturnValue();
 
         for (Modifiers modifiers : Modifiers.values()) {
-            if (modifiers.modify(bitmap)) {
+            if (modifiers.modifySkin(bitmap)) {
                 this.modifyCallback.accept(modifiers);
             }
         }

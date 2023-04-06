@@ -1,6 +1,7 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
 import com.kakaouo.mods.kacosmetics.util.Modifiers;
+import com.kakaouo.mods.kacosmetics.util.PlayerModelRegistry;
 import com.kakaouo.mods.kacosmetics.util.SkinModifier;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModel;
@@ -21,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import static com.kakaouo.mods.kacosmetics.util.SkullBlockRendererHelper.lastQueriedModel;
@@ -39,23 +41,19 @@ public class SkullBlockRendererMixin {
         if (lastQueriedModel != null) {
             SkullModelBase modelBase = lastQueriedModel;
             if (modelBase instanceof SkullModel model) {
-                try {
-                    ModelPart root = ((SkullModelAccessor) model).getRoot();
+                ModelPart root = ((SkullModelAccessor) model).getRoot();
+                Arrays.stream(Modifiers.values())
+                    .filter(m -> m.part() == Modifiers.Part.HEAD)
+                    .forEach(m -> {
+                        try {
+                            if (SkinModifier.isOfModifier(m, resourceLocation)) {
+                                m.getPartFromRoot(root).visible = true;
+                            }
+                        } catch (Exception ex) {
+                            // ;
+                        }
+                    });
 
-                    if (SkinModifier.isOfModifier(Modifiers.GRASS, resourceLocation)) {
-                        root.getChild("grass").visible = true;
-                    }
-
-                    if (SkinModifier.isOfModifier(Modifiers.EEVEE, resourceLocation)) {
-                        root.getChild("eeveeEars").visible = true;
-                    }
-
-                    if (SkinModifier.isOfModifier(Modifiers.CAT_EARS, resourceLocation)) {
-                        root.getChild("catEars").visible = true;
-                    }
-                } catch (Exception ex) {
-                    // ;
-                }
             }
         }
         return resourceLocation;
@@ -67,14 +65,16 @@ public class SkullBlockRendererMixin {
 
         SkullModelBase modelBase = lastQueriedModel;
         if (modelBase instanceof SkullModel model) {
-            try {
-                ModelPart root = ((SkullModelAccessor) model).getRoot();
-                root.getChild("grass").visible = false;
-                root.getChild("eeveeEars").visible = false;
-                root.getChild("catEars").visible = false;
-            } catch (Exception ex) {
-                // ;
-            }
+            ModelPart root = ((SkullModelAccessor) model).getRoot();
+            Arrays.stream(Modifiers.values())
+                .filter(m -> m.part() == Modifiers.Part.HEAD)
+                .forEach(m -> {
+                    try {
+                        m.getPartFromRoot(root).visible = false;
+                    } catch (Exception ex) {
+                        // ;
+                    }
+                });
         }
     }
 }

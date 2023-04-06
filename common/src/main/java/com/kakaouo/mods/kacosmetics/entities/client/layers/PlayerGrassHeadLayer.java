@@ -5,9 +5,9 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 
-public class PlayerGrassHeadLayer extends AbstractPlayerModifierLayer {
+public class PlayerGrassHeadLayer extends PlayerModifierLayer {
     public PlayerGrassHeadLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> renderLayerParent) {
-        super(renderLayerParent, Modifiers.GRASS, PlayerModifierCalls::renderGrass);
+        super(renderLayerParent, Modifiers.GRASS);
     }
 }
 

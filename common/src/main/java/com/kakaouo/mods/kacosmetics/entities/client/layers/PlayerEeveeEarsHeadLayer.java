@@ -5,8 +5,8 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 
-public class PlayerEeveeEarsHeadLayer extends AbstractPlayerModifierLayer {
+public class PlayerEeveeEarsHeadLayer extends PlayerModifierLayer {
     public PlayerEeveeEarsHeadLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> renderLayerParent) {
-        super(renderLayerParent, Modifiers.EEVEE, PlayerModifierCalls::renderEeveeEars);
+        super(renderLayerParent, Modifiers.EEVEE);
     }
 }

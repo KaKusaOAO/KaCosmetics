@@ -1,9 +1,7 @@
 package com.kakaouo.mods.kacosmetics.mixin.client;
 
-import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerCatEarsHeadLayer;
-import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerCatTailBodyLayer;
-import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerEeveeEarsHeadLayer;
-import com.kakaouo.mods.kacosmetics.entities.client.layers.PlayerGrassHeadLayer;
+import com.kakaouo.mods.kacosmetics.entities.client.layers.*;
+import com.kakaouo.mods.kacosmetics.util.Modifiers;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -18,9 +16,14 @@ public abstract class PlayerRendererMixin extends LivingEntityRendererMixin<Abst
     @Inject(method = "<init>", at = @At("RETURN"))
     public void injectInit(EntityRendererProvider.Context context, boolean bl, CallbackInfo ci) {
         PlayerRenderer renderer = (PlayerRenderer) (Object) this;
+        /*
         this.addLayer(new PlayerGrassHeadLayer(renderer));
         this.addLayer(new PlayerEeveeEarsHeadLayer(renderer));
         this.addLayer(new PlayerCatEarsHeadLayer(renderer));
-        this.addLayer(new PlayerCatTailBodyLayer(renderer));
+        this.addLayer(new PlayerCatTailBodyLayer(renderer));*/
+
+        for (var modifier : Modifiers.values()) {
+            this.addLayer(new PlayerModifierLayer(renderer, modifier));
+        }
     }
 }

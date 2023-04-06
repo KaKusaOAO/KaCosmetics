@@ -13,19 +13,9 @@ public enum SkinModifier {
 
     private static final EnumMap<Modifiers, Set<ResourceLocation>> TEXTURES = new EnumMap<>(Modifiers.class);
 
-    @Deprecated
-    public static void registerGrassPlayerSkin(ResourceLocation location) {
-        registerPlayerSkin(Modifiers.GRASS, location);
-    }
-
     public static void registerPlayerSkin(Modifiers modifier, ResourceLocation location) {
         Set<ResourceLocation> set = TEXTURES.computeIfAbsent(modifier, (m) -> new HashSet<>());
         set.add(location);
-    }
-
-    @Deprecated
-    public static boolean isGrassSkin(ResourceLocation location) {
-        return isOfModifier(Modifiers.GRASS, location);
     }
 
     public static boolean isOfModifier(Modifiers modifiers, ResourceLocation location) {
@@ -33,10 +23,7 @@ public enum SkinModifier {
         return TEXTURES.get(modifiers).contains(location);
     }
 
-    public static boolean applyModification(Modifiers modifiers, NativeImage bitmap) {
-        return modifiers.modify(bitmap);
-    }
-
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean validateKakaPalette(NativeImage bitmap) {
         if (!KakaUtils.colorAtPixel(bitmap, 63, 0).equals(new Color(0x3acb28))) return false;
         if (!KakaUtils.colorAtPixel(bitmap, 62, 0).equals(new Color(0xf9ca8b))) return false;

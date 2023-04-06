@@ -12,6 +12,7 @@
     "client.HttpTextureMixin",
     "client.HumanoidModelMixin",
     "client.LivingEntityRendererMixin",
+    "client.HumanoidModelAccessor",
     "client.PlayerModelMixin",
     "client.PlayerRendererMixin",
     "client.ScreenMixin",

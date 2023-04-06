@@ -5,9 +5,9 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 
-public class PlayerCatEarsHeadLayer extends AbstractPlayerModifierLayer {
+public class PlayerCatEarsHeadLayer extends PlayerModifierLayer {
     public PlayerCatEarsHeadLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> renderLayerParent) {
-        super(renderLayerParent, Modifiers.CAT_EARS, PlayerModifierCalls::renderCatEars);
+        super(renderLayerParent, Modifiers.CAT_EARS);
     }
 }
 
