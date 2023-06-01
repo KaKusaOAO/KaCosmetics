@@ -11,24 +11,25 @@ description = '''
 KaCosmetics ${version} by Kaka.
 '''
 logoFile = "assets/kacosmetics/icon.png"
+displayTest = "IGNORE_ALL_VERSION"
 
 [[dependencies.kacosmetics]]
 modId = "forge"
 mandatory = true
 versionRange = "[40,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.kacosmetics]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.18.2,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.kacosmetics]]
 modId = "architectury"
 mandatory = false
 versionRange = "[4.9.83,)"
 ordering = "AFTER"
-side = "BOTH"
+side = "CLIENT"

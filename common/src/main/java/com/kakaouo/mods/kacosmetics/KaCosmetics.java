@@ -10,6 +10,8 @@ public class KaCosmetics {
 
     public static void init() {
         Platform platform = PlatformManager.getPlatform();
+        if (!platform.isClient()) return;
+
         String name = platform.getPlatformName();
         LOGGER.info("Initializing KaCosmetics on {}...", name);
 
