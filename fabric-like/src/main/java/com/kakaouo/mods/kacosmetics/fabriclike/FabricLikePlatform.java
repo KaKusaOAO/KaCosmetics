@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -59,14 +60,14 @@ public interface FabricLikePlatform extends Platform {
     @Override
     default <T extends Entity> CompletableFuture<EntityType<T>> registerEntityTypeAsync(ResourceLocation id, EntityType.Builder<T> builder) {
         CompletableFuture<EntityType<T>> future = new CompletableFuture<>();
-        future.complete(Registry.register(Registry.ENTITY_TYPE, id, builder.build(id.toString())));
+        future.complete(Registry.register(BuiltInRegistries.ENTITY_TYPE, id, builder.build(id.toString())));
         return future;
     }
 
     @Override
     default <T extends Item> CompletableFuture<T> registerItemAsync(ResourceLocation id, T item) {
         CompletableFuture<T> future = new CompletableFuture<>();
-        future.complete(Registry.register(Registry.ITEM, id, item));
+        future.complete(Registry.register(BuiltInRegistries.ITEM, id, item));
         return future;
     }
 }
