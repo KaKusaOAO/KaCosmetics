@@ -10,7 +10,7 @@
 
 | 版本           | Fabric | Quilt | Forge |
 |--------------|--------|-------|-------|
-| `1.20`（基底版本） | ✅      | ❌     | ❌     |
+| `1.20`（基底版本） | ✅      | ❓     | ❓     |
 
 > 目前已知本模組會和 OptiFine 衝突！\
 > 如果您有在使用 OptiFine 的話，安裝這個模組會導致模組載入失敗，Minecraft 會崩潰！
@@ -20,14 +20,10 @@
 將這個模組和 Fabric API 放到 `mods` 資料夾就可以了！
 
 ### Quilt
-> ❌ Quilt 尚未支援 Minecraft 1.20！
-
 這個模組需要您安裝 [Quilted Fabric API](https://www.curseforge.com/minecraft/mc-mods/qsl) 才能運作！\
 將這個模組和 Quilted Fabric API 放到 `mods` 資料夾就可以了！
 
 ### Forge
-> ❌ Forge 尚未支援 Minecraft 1.20！
-
 將這個模組放到 `mods` 資料夾就可以了！
 
 ---
